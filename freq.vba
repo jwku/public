@@ -755,3 +755,56 @@ function toProcessY(n, tx) {
 
 wordPhraseFrequency();
 Please note that this will replace all non-alphanumeric characters with a space, potentially creating additional word boundaries. If you want to remove these characters without creating additional word boundaries (for example, to treat "word1-word2" as a single word), you could replace non-alphanumeric characters with nothing ('') instead of a space (' ').
+
+
+
+
+
+
+
+function getTextData() {
+  return document.body.innerText
+  //return "purposes This is some text data for testing purposes purposes. purposes This is some text data for testing purposes purposes. purposes This is some text data for testing purposes purposes testing purposes.";
+}
+
+function wordPhraseFrequency() {
+  const sNumber = "1,2,3";
+  let txa = getTextData(); 
+
+  const z = sNumber.split(",");
+  
+  for (let i = 0; i < z.length; i++) {
+    toProcessY(parseInt(z[i]), txa);
+  }
+}
+
+function toProcessY(n, tx) {
+  // Remove all non-alphanumeric characters
+  tx = tx.replace(/[^a-z0-9_' ]+/gi, ' ');
+
+  // Split the text into an array of words
+  const words = tx.split(/\s+/);
+
+  let frequency = {};
+  for (let i = 0; i <= words.length - n; i++) {
+    // Join together the next n words to form the phrase
+    const phrase = words.slice(i, i + n).join(' ');
+
+    if (frequency[phrase]) {
+      frequency[phrase]++;
+    } else {
+      frequency[phrase] = 1;
+    }
+  }
+
+  // Convert the frequency dictionary to an array and sort it by frequency
+  let sortedFrequency = Object.entries(frequency).sort((a, b) => b[1] - a[1]);
+
+  // Reverse the order of the array
+  //sortedFrequency = sortedFrequency.reverse();
+
+  // output the frequency array
+  console.log(sortedFrequency);
+}
+
+wordPhraseFrequency();
