@@ -1,0 +1,13 @@
+{
+  "name": "Red Page Popup",
+  "version": "1.0",
+  "manifest_version": 3,
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Red Page"
+  },
+  "permissions": []
+}
